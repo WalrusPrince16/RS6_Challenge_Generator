@@ -1,6 +1,10 @@
-body {
-  background-color: black;
+#main {
+  font-family: 'Fjalla One', sans-serif;
 }
-#all {
 
+body {
+  background-image: url("background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
