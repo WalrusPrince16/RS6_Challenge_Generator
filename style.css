@@ -7,6 +7,10 @@
 #display::first-letter {
   text-transform: uppercase;
 }
+#challnegeName {
+  text-transform: uppercase;
+  text-decoration: underline;
+}
 body {
   background-image: url("background.jpg");
   background-position: center;
