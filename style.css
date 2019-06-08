@@ -1,7 +1,12 @@
 #main {
   font-family: 'Fjalla One', sans-serif;
 }
-
+#roll h3 {
+  margin: 0 !important;
+}
+#display::first-letter {
+  text-transform: uppercase;
+}
 body {
   background-image: url("background.jpg");
   background-position: center;
