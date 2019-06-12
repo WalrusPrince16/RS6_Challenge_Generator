@@ -17,6 +17,9 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+ul {
+  list-style: none;
+}
 .clear {
   display: none;
 }

@@ -14,39 +14,25 @@ $(document).ready(function(){
     if ($challenges === "Single Challenge") {
       $("#add").addClass("clear");
       $("#remove").addClass("clear");
-      $("#challengeList").empty()
+      $("#challengeList").empty();
     } else {
       $add.removeClass("clear");
       $remove.removeClass("clear");
-    }
-  }, 1);
+      $("#challnegeName").text("Challenge list");
+    };
+  }, 1)});
+
   // When the roll button is clicked while single challenge is selected...
   $roll.click(function(){
     // Holds the values of the form objects
     $challenges = $("#singleOrMulti").val();
     var $team = $("#team").val();
-
     var flag = true;
-    if ($challenges === "Single Challenge") {
-      // Empties the display element's text
-      $display.empty();
-      // checkNumOfChallenges($numOfChallnges, $roll);
-      roll($team, flag);
-
-    } else {
+    if ($challenges !== "Single Challenge") {
       flag = false;
-      $display.empty();
-      $("#challnegeName").text("Challenge list");
-      roll($team, flag);
     };
-  });
-
-  $("#add").click(function(){
-
-  });
-  $("#remove").click(function(){
-
-  });
+    $display.empty();
+    roll($team, flag);
 });
 
 
@@ -124,36 +110,30 @@ function roll($team, flag) {
   var randomChallenge = randomChallenge[Math.floor(Math.random()*randomChallenge.length)];
 
   var $challnegeName = $("#challnegeName");
-  var $challengeItem = $("<li></li>");
+  var $challengeItem = $("<li class='text-left p-2'><h4></h4></li>");
 
   if ($team === "Attack") {
     if (flag) {
       $challnegeName.text(randomAtkChallenge[0]);
       $display.text(randomAtkChallenge[1]);
     } else {
-      console.log("attack working");
       $challengeItem.text(randomAtkChallenge[1]);
-      $("#challengeList").append($challengeItem);
     };
-
   } else if ($team == "Defense") {
     if (flag) {
       $challnegeName.text(randomDefChallenge[0]);
       $display.text(randomDefChallenge[1]);
     } else {
-      console.log("defense working");
       $challengeItem.text(randomDefChallenge[1]);
-      $("#challengeList").append($challengeItem);
     };
-
   } else {
     if (flag) {
       $challnegeName.text(randomChallenge[0]);
       $display.text(randomChallenge[1]);
     } else {
-      console.log("either working");
       $challengeItem.text(randomChallenge[1]);
-      $("#challengeList").append($challengeItem);
     };
   };
+
+  $("#challengeList").append($challengeItem);
 };
