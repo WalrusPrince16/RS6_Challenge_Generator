@@ -4,27 +4,16 @@ var $roll = $("#roll");
 // The place where challenge text is displayed.
 var $display = $("#display");
 
-// Optional buttons that appear when based on the value of the singleOrMulti var.
-var $add = $("#add");
-var $remove = $("#remove");
-
 $(document).ready(function(){
   setInterval(function(){
     var $challenges = $("#singleOrMulti").val();
     if ($challenges === "Single Challenge") {
-      $("#add").addClass("clear");
-      $("#remove").addClass("clear");
       $("#challengeList").empty();
     } else {
-      $add.removeClass("clear");
-      $remove.removeClass("clear");
       $("#challnegeName").text("Challenge list");
     };
-  }, 1)});
-
-  // When the roll button is clicked while single challenge is selected...
+  }, 1);
   $roll.click(function(){
-    // Holds the values of the form objects
     $challenges = $("#singleOrMulti").val();
     var $team = $("#team").val();
     var flag = true;
@@ -33,10 +22,14 @@ $(document).ready(function(){
     };
     $display.empty();
     roll($team, flag);
-});
 
-
-// Seclects a raondom challnege based upon the selected team.
+    var $gone = $(".remove");
+    $gone.click(function(){
+      $(this).prev().remove();
+      $(this).remove();
+      console.log("test");
+    });
+})});
 
 function roll($team, flag) {
   // Lists that hold the challenges for each selection.
@@ -110,8 +103,8 @@ function roll($team, flag) {
   var randomChallenge = randomChallenge[Math.floor(Math.random()*randomChallenge.length)];
 
   var $challnegeName = $("#challnegeName");
-  var $challengeItem = $("<li class='text-left p-2'><h4></h4></li>");
-
+  var $challengeItem = $("<h4 class='d-flex justify-content-between item'></h4>");
+  var $listButton = $("<button type='button' name='button' class='remove btn btn-warning'>Test</button>")
   if ($team === "Attack") {
     if (flag) {
       $challnegeName.text(randomAtkChallenge[0]);
@@ -134,6 +127,6 @@ function roll($team, flag) {
       $challengeItem.text(randomChallenge[1]);
     };
   };
-
+  $challengeItem.append($listButton);
   $("#challengeList").append($challengeItem);
 };
