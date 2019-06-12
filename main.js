@@ -1,45 +1,92 @@
+// The roller button that genrates a new challenge.
+var $roll = $("#roll");
 
+// The place where challenge text is displayed.
+var $display = $("#display");
+
+// Optional buttons that appear when based on the value of the singleOrMulti var.
+var $add = $("#add");
+var $remove = $("#remove");
 
 $(document).ready(function(){
-  // When the roll button is clicked...
-  $("#roll").click(function(){
-    // Create a var equal to the value of the option form
-    var $option = $("#exampleFormControlSelect1").val();
-    // then call a function with it as its parameter.
-    roll($option);
+  setInterval(function(){
+    var $challenges = $("#singleOrMulti").val();
+    if ($challenges === "Single Challenge") {
+      $("#add").addClass("clear");
+      $("#remove").addClass("clear");
+      $("#challengeList").empty()
+    } else {
+      $add.removeClass("clear");
+      $remove.removeClass("clear");
+    }
+  }, 1);
+  // When the roll button is clicked while single challenge is selected...
+  $roll.click(function(){
+    // Holds the values of the form objects
+    $challenges = $("#singleOrMulti").val();
+    var $team = $("#team").val();
+
+    var flag = true;
+    if ($challenges === "Single Challenge") {
+      // Empties the display element's text
+      $display.empty();
+      // checkNumOfChallenges($numOfChallnges, $roll);
+      roll($team, flag);
+
+    } else {
+      flag = false;
+      $display.empty();
+      $("#challnegeName").text("Challenge list");
+      roll($team, flag);
+    };
   });
 
-  $("#prev").click(function(){
+  $("#add").click(function(){
 
   });
-  $("#next").click(function(){
+  $("#remove").click(function(){
 
-  })
+  });
 });
 
 
-/// Seclects a raondom challnege
+// Seclects a raondom challnege based upon the selected team.
 
-function roll($option) {
-
+function roll($team, flag) {
+  // Lists that hold the challenges for each selection.
   var atkChallenges = [
-    ["no loud noises","no hard-breaching Ops"],
-    ["blind hour", "don't use drones"],
-    ["windows are just glass doors", "only enter through windows"],
-    ["the ultimate rush", "finish the round within 1:30"],
-    ["anti-meta gang", "no ACOGs"],
-    ["super good advisors", "LMGs only"],
-    ["nanobot swarm", "Only Finka can revive allies"],
-    ["seperation-anxiety", "all Ops must be in the same room at all times"],
-    ["roblox ops", "recruits only"],
-    ["beta squad", "ash and four recruits"],
-    ["#nowalls", "Fuze, Thermite, Hibana, Maverick, Sledge"]
-    ["one shot one death", "if you are shot, you must be still for 10 seconds"],
-    ["long-range gang", "DMRs only"],
-    ["speedy bois unite", "3 speed Ops only"],
-    ["Perfectionists", "you can only only shoot if you are at full health"]
-  ];
 
+    ["no loud noises","no hard-breaching Ops"],
+
+    ["blind hour", "don't use drones"],
+
+    ["windows are just glass doors", "only enter through windows"],
+
+    ["the ultimate rush", "finish the round within 1:30"],
+
+    ["anti-meta gang", "no ACOGs"],
+
+    ["super good advisors", "LMGs only"],
+
+    ["nanobot swarm", "Only Finka can revive allies"],
+
+    ["seperation-anxiety", "all Ops must be in the same room at all times"],
+
+    ["roblox ops", "recruits only"],
+
+    ["beta squad", "ash and four recruits"],
+
+    ["#nowalls", "Fuze, Thermite, Hibana, Maverick, Sledge"]
+
+    ["one shot one death", "if you are shot, you must be still for 10 seconds"],
+
+    ["long-range gang", "DMRs only"],
+
+    ["speedy bois unite", "3 speed Ops only"],
+
+    ["Perfectionists", "you can only only shoot if you are at full health"]
+
+  ];
   var defChallenges = [
     ["ok guys, team kill doc", "only Doc can heal or revive", ]
     ["build bridges not walls", "no reinforcements or barricades"],
@@ -57,8 +104,6 @@ function roll($option) {
     ["busted right bumper", "use Ops that aren't recruits but don't use their unique gadgets"],
     ["hide & hide", "choose a hiding spot and stay there all round"]
   ];
-
-
   var randomChallenge = [
     ["high-t squad", "male Ops only"],
     ["dead on arrival", "female Ops only"],
@@ -69,7 +114,7 @@ function roll($option) {
     ["ethical team-killing", "no reviving"],
     ["broken-knees", "no crouching"],
     ["hipfire horde", "laser sights only"],
-    ["bleeding out", "team shoot each other until you're all below 10 health"]
+    ["no detection", "if spotted, you must empty your magazine"]
   ];
 
   // Stores a random value from each of the above lists
@@ -78,17 +123,37 @@ function roll($option) {
   var randomDefChallenge = defChallenges[Math.floor(Math.random()*defChallenges.length)];
   var randomChallenge = randomChallenge[Math.floor(Math.random()*randomChallenge.length)];
 
-  var $display = $("#display");
   var $challnegeName = $("#challnegeName");
+  var $challengeItem = $("<li></li>");
 
-  if ($option === "Attack") {
-    $challnegeName.text(randomAtkChallenge[0])
-    $display.text(randomAtkChallenge[1]);
-  } else if ($option == "Defense") {
-    $challnegeName.text(randomDefChallenge[0])
-    $display.text(randomDefChallenge[1]);
+  if ($team === "Attack") {
+    if (flag) {
+      $challnegeName.text(randomAtkChallenge[0]);
+      $display.text(randomAtkChallenge[1]);
+    } else {
+      console.log("attack working");
+      $challengeItem.text(randomAtkChallenge[1]);
+      $("#challengeList").append($challengeItem);
+    };
+
+  } else if ($team == "Defense") {
+    if (flag) {
+      $challnegeName.text(randomDefChallenge[0]);
+      $display.text(randomDefChallenge[1]);
+    } else {
+      console.log("defense working");
+      $challengeItem.text(randomDefChallenge[1]);
+      $("#challengeList").append($challengeItem);
+    };
+
   } else {
-    $challnegeName.text(randomChallenge[0])
-    $display.text(randomChallenge[1]);
+    if (flag) {
+      $challnegeName.text(randomChallenge[0]);
+      $display.text(randomChallenge[1]);
+    } else {
+      console.log("either working");
+      $challengeItem.text(randomChallenge[1]);
+      $("#challengeList").append($challengeItem);
+    };
   };
 };

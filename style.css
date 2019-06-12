@@ -9,7 +9,6 @@
   text-transform: uppercase;
 }
 #challnegeName {
-  text-transform: uppercase;
   text-decoration: underline;
 }
 body {
@@ -17,4 +16,10 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.clear {
+  display: none;
+}
+.show {
+  display: inline-block;
 }
