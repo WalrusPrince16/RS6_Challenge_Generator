@@ -1,12 +1,9 @@
 #main {
   font-family: 'Fjalla One', sans-serif;
-  opacity: .98;
+  opacity: .95;
 }
-#roll h3 {
-  margin: 0 !important;
-}
-#display::first-letter {
-  text-transform: uppercase;
+#display, .item {
+  text-transform: capitalize;
 }
 #challnegeName {
   text-decoration: underline;

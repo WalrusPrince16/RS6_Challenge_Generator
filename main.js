@@ -10,9 +10,10 @@ $(document).ready(function(){
     if ($challenges === "Single Challenge") {
       $("#challengeList").empty();
     } else {
-      $("#challnegeName").text("Challenge list");
+      $("#challnegeName").text("Challenge(s)");
     };
   }, 1);
+
   $roll.click(function(){
     $challenges = $("#singleOrMulti").val();
     var $team = $("#team").val();
@@ -25,8 +26,7 @@ $(document).ready(function(){
 
     var $gone = $(".remove");
     $gone.click(function(){
-      $(this).prev().remove();
-      $(this).remove();
+      $(this).closest("h4").remove();
       console.log("test");
     });
 })});
@@ -104,7 +104,7 @@ function roll($team, flag) {
 
   var $challnegeName = $("#challnegeName");
   var $challengeItem = $("<h4 class='d-flex justify-content-between item'></h4>");
-  var $listButton = $("<button type='button' name='button' class='remove btn btn-warning'>Test</button>")
+  var $listButton = $("<button type='button' name='button' class='remove btn btn-warning'>Remove</button>")
   if ($team === "Attack") {
     if (flag) {
       $challnegeName.text(randomAtkChallenge[0]);
