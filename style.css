@@ -1,16 +1,3 @@
-#main {
-  font-family: 'Fjalla One', sans-serif;
-  opacity: .95;
-}
-#display, .item {
-  text-transform: capitalize;
-}
-#challnegeName {
-  text-decoration: underline;
-}
-body {
-  background-image: url("background2.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+@media (max-width: 1024px) {
+  /* planned media query for challenge list */
 }

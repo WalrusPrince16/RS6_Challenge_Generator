@@ -6,28 +6,27 @@ var $display = $("#display");
 
 $(document).ready(function(){
   setInterval(function(){
-    var $challenges = $("#singleOrMulti").val();
+    $challenges = $("#singleOrMulti").val();
     if ($challenges === "Single Challenge") {
       $("#challengeList").empty();
     } else {
       $("#challnegeName").text("Challenge(s)");
     };
-  }, 1);
+  }, 100);
 
   $roll.click(function(){
-    $challenges = $("#singleOrMulti").val();
-    var $team = $("#team").val();
+    $team = $("#team").val();
+    console.log($team);
     var flag = true;
-    if ($challenges !== "Single Challenge") {
+    if ($challenges === "Multi-Challenge") {
       flag = false;
     };
+    console.log(flag);
     $display.empty();
     roll($team, flag);
-
     var $gone = $(".remove");
     $gone.click(function(){
       $(this).closest("h4").remove();
-      console.log("test");
     });
 })});
 
@@ -35,89 +34,85 @@ function roll($team, flag) {
   // Lists that hold the challenges for each selection.
   var atkChallenges = [
 
-    ["no loud noises","no hard-breaching Ops"],
+    ["Stealth Operation","No hard-breaching operators"],
 
-    ["blind hour", "don't use drones"],
+    ["Blind Hour", "Don't use drones during the round"],
 
-    ["windows are just glass doors", "only enter through windows"],
+    ["Windows are just glass doors", "Only enter through windows"],
 
-    ["the ultimate rush", "finish the round within 1:30"],
+    ["Recruit-Rush", "finish the round within two minutes"],
 
-    ["anti-meta gang", "no ACOGs"],
+    ["Anti-Meta Gang", "No ACOGs"],
 
-    ["super good advisors", "LMGs only"],
+    ["Super Good Advisors", "LMGs only"],
 
-    ["nanobot swarm", "Only Finka can revive allies"],
+    ["Nanobot Swarm", "Only Finka can revive allies"],
 
-    ["seperation-anxiety", "all Ops must be in the same room at all times"],
+    ["Seperation-Anxiety", "All Ops must be in the same room at all times"],
 
-    ["roblox ops", "recruits only"],
+    ["Roblox Ops", "Recruits only"],
 
-    ["beta squad", "ash and four recruits"],
+    ["FBI", "FBI operators only"]
+
+    ["Beta Squad", "Ash and four recruits"],
 
     ["#nowalls", "Fuze, Thermite, Hibana, Maverick, Sledge"]
 
-    ["one shot one death", "if you are shot, you must be still for 10 seconds"],
+    ["One Shot One Kill", "Single-fire weapons only"],
 
-    ["long-range gang", "DMRs only"],
+    ["Don't Move, Re Re!", "DMRs only"],
 
-    ["speedy bois unite", "3 speed Ops only"],
+    ["In & Out", "3 speed operators only"],
 
-    ["Perfectionists", "you can only only shoot if you are at full health"]
+    ["Perfectionists", "When below 90 health, you can only use your sidearm"]
 
   ];
   var defChallenges = [
-    ["ok guys, team kill doc", "only Doc can heal or revive", ]
-    ["build bridges not walls", "no reinforcements or barricades"],
-    ["home-defense", "handguns only"],
-    ["marked for death", "one op must always be outside"],
-    ["the afterlife in seige", "no cams unless you're dead"],
-    ["the m-strat", "no callouts allowed"],
-    ["shhh! the sun people will hear us!", "no shooting outside"],
-    ["team player", "castle barricade the objective"],
-    ["nap time", "the team point leader does not have to move and can rest his aching back"],
-    ["make yourself useful","the one with the least points must run outside and stay there until death or the end of the round"],
-    ["mobile silencer", "you must be in a mute jammer's range to shoot"],
-    ["trap-clap", "trap ops only"],
-    ["prepared", "use all gadgets in the prep phase"],
-    ["busted right bumper", "use Ops that aren't recruits but don't use their unique gadgets"],
-    ["hide & hide", "choose a hiding spot and stay there all round"]
+    ["Battle Medic", "Only Doc can heal or revive allies", ]
+    ["Build Bridges", "No reinforcements or Barricades"],
+    ["Home-defense", "Handguns only"],
+    ["Marked for Death", "One operator must always be outside"],
+    ["Nokk Virus", "No cameras, drones, or Maestro turrets"],
+    ["Code M", "You cannot make callouts while alive"],
+    ["Fort Castle", "Castle barricade the objective with all operators inside"],
+    ["Well-rested", "The team leader can order any two operators to remain outside until death"],
+    ["The Eternal Burden","The weakest team member must be vote kicked if they do not get a kill/assist"],
+    ["Complete Silence", "Suppresors only and no impact grenades"],
+    ["Labyrinth", "Trap operators only"],
+    ["Prepared", "Use ALL gadgets in the prep phase"],
   ];
   var randomChallenge = [
-    ["high-t squad", "male Ops only"],
-    ["dead on arrival", "female Ops only"],
-    ["stealth boys", "suppressors only"],
-    ["ptsd platoon", "no explosives"],
-    ["no insurance", "don't break anything (walls, windows, doors, etc.)"],
-    ["pay-to-lose", "DLC ops only"],
-    ["ethical team-killing", "no reviving"],
-    ["broken-knees", "no crouching"],
-    ["hipfire horde", "laser sights only"],
-    ["no detection", "if spotted, you must empty your magazine"]
+    ["Male Men", "Male operators only"],
+    ["Waifuwaffen", "Female operators only"],
+    ["Stealth Ops", "Suppressors only"],
+    ["Silence", "No explosives"],
+    ["No insurance", "Don't break anything (walls, windows, doors, etc.)"],
+    ["Pay-To-Lose", "DLC ops only"],
+    ["Ethical Team-Killing", "No reviving"],
+    ["Hipfire Squad", "laser sights only"],
   ];
-
   // Stores a random value from each of the above lists
-
   var randomAtkChallenge = atkChallenges[Math.floor(Math.random()*atkChallenges.length)];
   var randomDefChallenge = defChallenges[Math.floor(Math.random()*defChallenges.length)];
   var randomChallenge = randomChallenge[Math.floor(Math.random()*randomChallenge.length)];
-
   var $challnegeName = $("#challnegeName");
-  var $challengeItem = $("<h4 class='d-flex justify-content-between item'></h4>");
-  var $listButton = $("<button type='button' name='button' class='remove btn btn-warning'>Remove</button>")
+  var $challengeItem = $("<h4 class='d-flex justify-content-between pb-2'></h4>");
+  var $listButton = $(
+    "<button type='button' name='button' class='remove btn btn-warning'><i class='fas fa-times fa-2x'></i></button>"
+  );
   if ($team === "Attack") {
     if (flag) {
       $challnegeName.text(randomAtkChallenge[0]);
       $display.text(randomAtkChallenge[1]);
     } else {
-      $challengeItem.text(randomAtkChallenge[1]);
+      $challengeItem.text(randomAtkChallenge[1]).addClass("text-warning");
     };
-  } else if ($team == "Defense") {
+  } else if ($team === "Defense") {
     if (flag) {
       $challnegeName.text(randomDefChallenge[0]);
       $display.text(randomDefChallenge[1]);
     } else {
-      $challengeItem.text(randomDefChallenge[1]);
+      $challengeItem.text(randomDefChallenge[1]).addClass("text-primary");
     };
   } else {
     if (flag) {
@@ -127,6 +122,12 @@ function roll($team, flag) {
       $challengeItem.text(randomChallenge[1]);
     };
   };
-  $challengeItem.append($listButton);
-  $("#challengeList").append($challengeItem);
+  if (flag) {
+    // Prevents the list button from being added
+    // while using single challenge mode.
+    return;
+  } else {
+    $("#challengeList").append($challengeItem);
+    $challengeItem.append($listButton);
+  };
 };
