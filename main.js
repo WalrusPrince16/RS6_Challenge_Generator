@@ -1,9 +1,7 @@
 // The roller button that genrates a new challenge.
 var $roll = $("#roll");
-
 // The place where challenge text is displayed.
 var $display = $("#display");
-
 $(document).ready(function(){
   setInterval(function(){
     $challenges = $("#singleOrMulti").val();
@@ -13,22 +11,20 @@ $(document).ready(function(){
       $("#challnegeName").text("Challenge(s)");
     };
   }, 100);
-
   $roll.click(function(){
     $team = $("#team").val();
-    console.log($team);
     var flag = true;
     if ($challenges === "Multi-Challenge") {
       flag = false;
     };
-    console.log(flag);
     $display.empty();
     roll($team, flag);
     var $gone = $(".remove");
     $gone.click(function(){
       $(this).closest("h4").remove();
     });
-})});
+  });
+});
 
 function roll($team, flag) {
   // Lists that hold the challenges for each selection.
@@ -98,36 +94,42 @@ function roll($team, flag) {
   var $challnegeName = $("#challnegeName");
   var $challengeItem = $("<h4 class='d-flex justify-content-between pb-2'></h4>");
   var $listButton = $(
-    "<button type='button' name='button' class='remove btn btn-warning'><i class='fas fa-times fa-2x'></i></button>"
+    "<button type='button' name='button' class='remove btn btn-warning ml-1'><i class='fas fa-times fa-2x'></i></button>"
   );
-  if ($team === "Attack") {
-    if (flag) {
-      $challnegeName.text(randomAtkChallenge[0]);
-      $display.text(randomAtkChallenge[1]);
+  try {
+    if ($team === "Attack") {
+      if (flag) {
+        $challnegeName.text(randomAtkChallenge[0]);
+        $display.text(randomAtkChallenge[1]);
+      } else {
+        $challengeItem.text(randomAtkChallenge[1]).addClass("text-warning");
+      };
+    } else if ($team === "Defense") {
+      if (flag) {
+        $challnegeName.text(randomDefChallenge[0]);
+        $display.text(randomDefChallenge[1]);
+      } else {
+        $challengeItem.text(randomDefChallenge[1]).addClass("text-primary");
+      };
     } else {
-      $challengeItem.text(randomAtkChallenge[1]).addClass("text-warning");
+      if (flag) {
+        $challnegeName.text(randomChallenge[0]);
+        $display.text(randomChallenge[1]);
+      } else {
+        $challengeItem.text(randomChallenge[1]);
+      };
     };
-  } else if ($team === "Defense") {
     if (flag) {
-      $challnegeName.text(randomDefChallenge[0]);
-      $display.text(randomDefChallenge[1]);
+      // Prevents the list button from being added
+      // while using single challenge mode.
+      return;
     } else {
-      $challengeItem.text(randomDefChallenge[1]).addClass("text-primary");
+      $("#challengeList").append($challengeItem);
+      $challengeItem.append($listButton);
     };
-  } else {
-    if (flag) {
-      $challnegeName.text(randomChallenge[0]);
-      $display.text(randomChallenge[1]);
-    } else {
-      $challengeItem.text(randomChallenge[1]);
-    };
-  };
-  if (flag) {
-    // Prevents the list button from being added
-    // while using single challenge mode.
-    return;
-  } else {
-    $("#challengeList").append($challengeItem);
-    $challengeItem.append($listButton);
+  } catch(e) {
+
+  } finally {
+
   };
 };

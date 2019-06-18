@@ -4,11 +4,24 @@
     <style>
       main {
         font-family: 'Fjalla One', sans-serif;
-        opacity: .95;
+        opacity: .9;
         background-image: url("background2.jpg");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+      }
+      select {
+        opacity: 1;
+      }
+      #roll {
+        background: repeating-linear-gradient(
+          0deg,
+          black 0%,
+          #ffc107 10%,
+          #ffc107 100%
+          );
+        border: 1px solid black;
+        box-shadow: 0 .5rem .2rem;
       }
     </style>
     <meta charset="utf-8">
@@ -31,16 +44,21 @@
       <div class="container min-vh-100 d-flex flex-column justify-content-center">
         <div class="row">
           <div class="col">
+            <div class="row">
+              <div class="col text-center">
+                <i class="far fa-moon fa-lg" id="theme"></i>
+              </div>
+            </div>
             <div class="menu text-center text-warning">
               <h1>Challenge Roller</h1>
               <h2>Choose Team</h2>
               <form class="form-group">
-                <select class="form-control-lg w-100 mb-3" id="team">
+                <select class="form-control-lg w-100 mb-3 bg-dark text-light" id="team">
                   <option>Either</option>
                   <option>Attack</option>
                   <option>Defense</option>
                 </select>
-                <select class="form-control-lg w-100" id="singleOrMulti">
+                <select class="form-control-lg w-100 bg-dark text-light" id="singleOrMulti">
                   <option>Single Challenge</option>
                   <option>Multi-Challenge</option>
                 </select>
