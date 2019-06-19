@@ -11,6 +11,7 @@ $(document).ready(function(){
       $("#challnegeName").text("Challenge(s)");
     };
   }, 100);
+
   $roll.click(function(){
     $team = $("#team").val();
     var flag = true;
@@ -19,8 +20,7 @@ $(document).ready(function(){
     };
     $display.empty();
     roll($team, flag);
-    var $gone = $(".remove");
-    $gone.click(function(){
+    $(".remove").click(function(){
       $(this).closest("h4").remove();
     });
   });
@@ -29,39 +29,22 @@ $(document).ready(function(){
 function roll($team, flag) {
   // Lists that hold the challenges for each selection.
   var atkChallenges = [
-
     ["Stealth Operation","No hard-breaching operators"],
-
     ["Blind Hour", "Don't use drones during the round"],
-
     ["Windows are just glass doors", "Only enter through windows"],
-
     ["Recruit-Rush", "finish the round within two minutes"],
-
     ["Anti-Meta Gang", "No ACOGs"],
-
     ["Super Good Advisors", "LMGs only"],
-
     ["Nanobot Swarm", "Only Finka can revive allies"],
-
     ["Seperation-Anxiety", "All Ops must be in the same room at all times"],
-
     ["Roblox Ops", "Recruits only"],
-
     ["FBI", "FBI operators only"]
-
     ["Beta Squad", "Ash and four recruits"],
-
     ["#nowalls", "Fuze, Thermite, Hibana, Maverick, Sledge"]
-
     ["One Shot One Kill", "Single-fire weapons only"],
-
     ["Don't Move, Re Re!", "DMRs only"],
-
     ["In & Out", "3 speed operators only"],
-
-    ["Perfectionists", "When below 90 health, you can only use your sidearm"]
-
+    ["Perfectionists", "When below 90 health, you can only use your sidearm"],
   ];
   var defChallenges = [
     ["Battle Medic", "Only Doc can heal or revive allies", ]
@@ -87,10 +70,12 @@ function roll($team, flag) {
     ["Ethical Team-Killing", "No reviving"],
     ["Hipfire Squad", "laser sights only"],
   ];
+
   // Stores a random value from each of the above lists
   var randomAtkChallenge = atkChallenges[Math.floor(Math.random()*atkChallenges.length)];
   var randomDefChallenge = defChallenges[Math.floor(Math.random()*defChallenges.length)];
   var randomChallenge = randomChallenge[Math.floor(Math.random()*randomChallenge.length)];
+
   var $challnegeName = $("#challnegeName");
   var $challengeItem = $("<h4 class='d-flex justify-content-between pb-2'></h4>");
   var $listButton = $(
@@ -119,17 +104,18 @@ function roll($team, flag) {
         $challengeItem.text(randomChallenge[1]);
       };
     };
-    if (flag) {
-      // Prevents the list button from being added
-      // while using single challenge mode.
-      return;
-    } else {
-      $("#challengeList").append($challengeItem);
-      $challengeItem.append($listButton);
-    };
-  } catch(e) {
-
+  } catch (e) {
+    roll($team, flag)
   } finally {
+    console.log("check");
+  };
 
+  if (flag) {
+    // Prevents the list button from being added
+    // while using single challenge mode.
+    return;
+  } else {
+    $("#challengeList").append($challengeItem);
+    $challengeItem.append($listButton);
   };
 };
