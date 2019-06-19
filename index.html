@@ -5,7 +5,7 @@
       main {
         font-family: 'Fjalla One', sans-serif;
         opacity: .9;
-        background-image: url("background2.jpg");
+        background-image: url("background.jpg");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -45,20 +45,18 @@
         <div class="row">
           <div class="col">
             <div class="row">
-              <div class="col text-center">
-                <i class="far fa-moon fa-lg" id="theme"></i>
-              </div>
+              
             </div>
             <div class="menu text-center text-warning">
               <h1>Challenge Roller</h1>
               <h2>Choose Team</h2>
               <form class="form-group">
-                <select class="form-control-lg w-100 mb-3 bg-dark text-light" id="team">
+                <select class="form-control-lg w-100 mb-3 bg-dark text-warning" id="team">
                   <option>Either</option>
                   <option>Attack</option>
                   <option>Defense</option>
                 </select>
-                <select class="form-control-lg w-100 bg-dark text-light" id="singleOrMulti">
+                <select class="form-control-lg w-100 bg-dark text-warning" id="singleOrMulti">
                   <option>Single Challenge</option>
                   <option>Multi-Challenge</option>
                 </select>
@@ -71,7 +69,7 @@
                 </div>
                 <div class="row">
                   <div class="col">
-                    <div class="w-100 text-white bg-dark text-center my-3">
+                    <div class="w-100 text-white bg-dark text-center my-3 border">
                       <u><h4 id="challnegeName" class="text-center text-uppercase p-2">...</h4></u>
                       <h4 id="display" class="text-left p-2 mb-0">Wating for roll...</h4>
                       <section class="text-left p-2" id="challengeList"></section>
