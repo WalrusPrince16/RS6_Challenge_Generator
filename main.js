@@ -105,7 +105,7 @@ function roll($team, flag) {
       };
     };
   } catch (e) {
-    roll($team, flag)
+    roll($team, flag);
   } finally {
     console.log("check");
   };
