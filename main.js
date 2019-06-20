@@ -2,6 +2,7 @@
 var $roll = $("#roll");
 // The place where challenge text is displayed.
 var $display = $("#display");
+
 $(document).ready(function(){
   setInterval(function(){
     $challenges = $("#singleOrMulti").val();
@@ -10,8 +11,7 @@ $(document).ready(function(){
     } else {
       $("#challnegeName").text("Challenge(s)");
     };
-  }, 100);
-
+  }, 1);
   $roll.click(function(){
     $team = $("#team").val();
     var flag = true;
@@ -32,7 +32,7 @@ function roll($team, flag) {
     ["Stealth Operation","No hard-breaching operators"],
     ["Blind Hour", "Don't use drones during the round"],
     ["Windows are just glass doors", "Only enter through windows"],
-    ["Recruit-Rush", "finish the round within two minutes"],
+    ["Recruit-Rush", "Finish the round within two minutes"],
     ["Anti-Meta Gang", "No ACOGs"],
     ["Super Good Advisors", "LMGs only"],
     ["Nanobot Swarm", "Only Finka can revive allies"],
@@ -68,9 +68,8 @@ function roll($team, flag) {
     ["No insurance", "Don't break anything (walls, windows, doors, etc.)"],
     ["Pay-To-Lose", "DLC ops only"],
     ["Ethical Team-Killing", "No reviving"],
-    ["Hipfire Squad", "laser sights only"],
+    ["Hipfire Squad", "Laser-sights only"],
   ];
-
   // Stores a random value from each of the above lists
   var randomAtkChallenge = atkChallenges[Math.floor(Math.random()*atkChallenges.length)];
   var randomDefChallenge = defChallenges[Math.floor(Math.random()*defChallenges.length)];
@@ -107,15 +106,23 @@ function roll($team, flag) {
   } catch (e) {
     roll($team, flag);
   } finally {
-    console.log("check");
+    // Caught
   };
-
   if (flag) {
     // Prevents the list button from being added
     // while using single challenge mode.
     return;
   } else {
-    $("#challengeList").append($challengeItem);
-    $challengeItem.append($listButton);
+    // Catches instances of blank challenges and prevents
+    // them from being added.
+    if ($challengeItem.text() !== "") {
+      // Adds the challenge to the list.
+      $("#challengeList").append($challengeItem);
+      // Adds the button to the challenge.
+      $challengeItem.append($listButton);
+    } else {
+      // Otherwise, leave the function.
+      return;
+    };
   };
 };
