@@ -31,7 +31,7 @@ function roll($team, flag) {
   var atkChallenges = [
     ["Stealth Operation","No hard-breaching operators"],
     ["Blind Hour", "Don't use drones during the round"],
-    ["Windows are just glass doors", "Only enter through windows"],
+    ["Windows are just glass doors", "Only enter/exit through windows"],
     ["Recruit-Rush", "Finish the round within two minutes"],
     ["Anti-Meta Gang", "No ACOGs"],
     ["Super Good Advisors", "LMGs only"],
@@ -44,7 +44,7 @@ function roll($team, flag) {
     ["One Shot One Kill", "Single-fire weapons only"],
     ["Don't Move, Re Re!", "DMRs only"],
     ["In & Out", "3 speed operators only"],
-    ["Perfectionists", "When below 90 health, you can only use your sidearm"],
+    ["Perfectionists", "When below 90 health, you can only use your sidearm"]
   ];
   var defChallenges = [
     ["Battle Medic", "Only Doc can heal or revive allies", ]
@@ -59,6 +59,8 @@ function roll($team, flag) {
     ["Complete Silence", "Suppresors only and no impact grenades"],
     ["Labyrinth", "Trap operators only"],
     ["Prepared", "Use ALL gadgets in the prep phase"],
+    ["Far From Home", "Reinforce a room that isn't the objective"],
+    ["Wide Open", "Do not reinforce or use use trap gadgets"]
   ];
   var randomChallenge = [
     ["Male Men", "Male operators only"],
@@ -69,6 +71,11 @@ function roll($team, flag) {
     ["Pay-To-Lose", "DLC ops only"],
     ["Ethical Team-Killing", "No reviving"],
     ["Hipfire Squad", "Laser-sights only"],
+    ["Precision Framing", "Single-shot weapons only"],
+    ["Defenders", "Shotguns only"],
+    ["SMG Squad", "SMGs only"],
+    ["Sidearmy", "Hanguns only"],
+    ["Hacked", "No marking/pinging targets"]
   ];
   // Stores a random value from each of the above lists
   var randomAtkChallenge = atkChallenges[Math.floor(Math.random()*atkChallenges.length)];
