@@ -1,34 +1,35 @@
 // The roller button that genrates a new challenge.
-var $roll = $("#roll");
+let $roll = $("#roll");
 // The place where challenge text is displayed.
-var $display = $("#display");
+let $display = $("#display");
 
-$(document).ready(function(){
-  setInterval(function(){
-    $challenges = $("#singleOrMulti").val();
+$(document).ready(()=>{
+  setInterval(()=>{
+    let $challenges = $("#singleOrMulti").val();
     if ($challenges === "Single Challenge") {
       $("#challengeList").empty();
     } else {
       $("#challnegeName").text("Challenge(s)");
     };
   }, 1);
-  $roll.click(function(){
-    $team = $("#team").val();
+
+  $roll.click(()=>{
+    let $challenges = $("#singleOrMulti").val();
+    let $team = $("#team").val();
     var flag = true;
     if ($challenges === "Multi-Challenge") {
       flag = false;
     };
     $display.empty();
     roll($team, flag);
-    $(".remove").click(function(){
-      $(this).closest("h4").remove();
+    $(".remove").click(()=>{$(this).closest("h4").remove();
     });
   });
 });
 
 function roll($team, flag) {
   // Lists that hold the challenges for each selection.
-  var atkChallenges = [
+  const atkChallenges = [
     ["Stealth Operation","No hard-breaching operators"],
     ["Blind Hour", "Don't use drones during the round"],
     ["Windows are just glass doors", "Only enter/exit through windows"],
@@ -46,7 +47,7 @@ function roll($team, flag) {
     ["In & Out", "3 speed operators only"],
     ["Perfectionists", "When below 90 health, you can only use your sidearm"]
   ];
-  var defChallenges = [
+  const defChallenges = [
     ["Battle Medic", "Only Doc can heal or revive allies", ]
     ["Build Bridges", "No reinforcements or Barricades"],
     ["Home-defense", "Handguns only"],
@@ -62,7 +63,7 @@ function roll($team, flag) {
     ["Far From Home", "Reinforce a room that isn't the objective"],
     ["Wide Open", "Do not reinforce or use use trap gadgets"]
   ];
-  var randomChallenge = [
+  const randomChallenges = [
     ["Male Men", "Male operators only"],
     ["Waifuwaffen", "Female operators only"],
     ["Stealth Ops", "Suppressors only"],
@@ -78,15 +79,13 @@ function roll($team, flag) {
     ["Hacked", "No marking/pinging targets"]
   ];
   // Stores a random value from each of the above lists
-  var randomAtkChallenge = atkChallenges[Math.floor(Math.random()*atkChallenges.length)];
-  var randomDefChallenge = defChallenges[Math.floor(Math.random()*defChallenges.length)];
-  var randomChallenge = randomChallenge[Math.floor(Math.random()*randomChallenge.length)];
+  let randomAtkChallenge = atkChallenges[Math.floor(Math.random()*atkChallenges.length)];
+  let randomDefChallenge = defChallenges[Math.floor(Math.random()*defChallenges.length)];
+  let randomChallenge = randomChallenges[Math.floor(Math.random()*randomChallenges.length)];
 
-  var $challnegeName = $("#challnegeName");
-  var $challengeItem = $("<h4 class='d-flex justify-content-between pb-2'></h4>");
-  var $listButton = $(
-    "<button type='button' name='button' class='remove btn btn-warning ml-1'><i class='fas fa-times fa-2x'></i></button>"
-  );
+  let $challnegeName = $("#challnegeName");
+  let $challengeItem = $("<h4 class='d-flex justify-content-between pb-2'></h4>");
+  let $listButton = $("<button type='button' name='button' class='remove btn btn-warning ml-1'><i class='fas fa-times fa-2x'></i></button>");
   try {
     if ($team === "Attack") {
       if (flag) {
@@ -115,10 +114,12 @@ function roll($team, flag) {
   } finally {
     // Caught
   };
+
   if (flag) {
     // Prevents the list button from being added
     // while using single challenge mode.
     return;
+
   } else {
     // Catches instances of blank challenges and prevents
     // them from being added.

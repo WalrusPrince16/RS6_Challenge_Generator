@@ -4,21 +4,28 @@
     <style>
       main {
         font-family: 'Fjalla One', sans-serif;
-        opacity: .9;
         background-image: url("background.jpg");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
       }
-      select {
-        opacity: 1;
+      #content {
+        opacity: .85;
       }
+
+      ul {
+        list-style: none;
+        max-height: 12rem;
+        overflow-y: scroll;
+        font-size: 1.5rem;
+      }
+
       #roll {
         background: repeating-linear-gradient(
           0deg,
           black 0%,
-          #ffc107 10%,
-          #ffc107 100%
+          #ffc107 15%,
+          #ffc111 100%
           );
         border: 1px solid black;
         box-shadow: 0 .5rem .2rem;
@@ -40,52 +47,51 @@
     <title>RS6 Generator</title>
   </head>
   <body>
-    <main class="bg-dark text-light" id="main">
-      <div class="container min-vh-100 d-flex flex-column justify-content-center">
+
+    <main class="bg-dark text-white" id="main">
+      <div class="container min-vh-100 d-flex flex-column justify-content-center" id="content">
         <div class="row">
           <div class="col">
-            <div class="row">
-
-            </div>
             <div class="menu text-center text-warning">
               <h1>Challenge Roller</h1>
-              <h2>Choose Team</h2>
               <form class="form-group">
-                <select class="form-control-lg w-100 mb-3 bg-light text-dark" id="team">
+                <select class="form-control-lg mb-3 bg-light text-dark d-block w-100" id="team">
                   <option>Either</option>
                   <option>Attack</option>
                   <option>Defense</option>
                 </select>
-                <select class="form-control-lg w-100 bg-light text-dark" id="singleOrMulti">
+                <select class="form-control-lg bg-light text-dark d-block w-100" id="singleOrMulti">
                   <option>Single Challenge</option>
                   <option>Multi-Challenge</option>
                 </select>
               </form>
             </div>
-            <div class="row">
-              <div class="col">
-                <div class="d-flex justify-content-between">
-                  <button id="roll" type="button" class="btn btn-warning w-100 p-2" name="button"><i class="fas fa-redo fa-2x"></i></button>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <div class="w-100 text-white bg-dark text-center my-3 border">
-                      <u><h4 id="challnegeName" class="text-center text-uppercase p-2">...</h4></u>
-                      <h4 id="display" class="text-left p-2 mb-0">Wating for roll...</h4>
-                      <section class="text-left p-2" id="challengeList"></section>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col">
+            <button id="roll" class="btn w-100 p-2"><i class="fas fa-redo fa-2x"></i></button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="text-center bg-dark my-3 py-3 border">
+              <h4 id="challnegeName" class="text-uppercase pb-2">...</h4>
+              <h4 id="display">Wating for roll...</h4>
+              <ul class="text-left" id="challengeList">
+                <!-- Dynamically Generated Content -->
+              </ul>
+            </div>
+          </div>
       </div>
     </main>
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="new.js"></script>
   </body>
 </html>
